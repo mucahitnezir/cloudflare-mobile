@@ -1,6 +1,6 @@
 # cloudflare_mobile
 
-Cloudflare mobile client
+Mobile client for Cloudflare
 
 ### The version of Flutter
 ```
