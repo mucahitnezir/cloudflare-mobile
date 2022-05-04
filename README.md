@@ -6,7 +6,15 @@ Mobile client for Cloudflare
 
 This project uses official Cloudflare api.
 
-For more info, visit [documentation](https://api.cloudflare.com/) page.  
+For more info, visit [documentation](https://api.cloudflare.com/) page.
+
+## Screens to do
+
+- [ ] Splash screen. (Set api token in this page).
+- [ ] Account listing screen.
+- [ ] Website listing screen.
+- [ ] Website analytics screen.
+- [ ] Logout screen. (After logout, redirect to splash screen)
 
 ### The version of Flutter
 ```
