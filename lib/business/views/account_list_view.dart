@@ -1,5 +1,7 @@
+import 'package:cloudflare_mobile/core/init/navigation/navigation_service.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/constants/navigation_constants.dart';
 import '../view_models/account_list_view_model.dart';
 
 class AccountListView extends StatefulWidget {
@@ -27,6 +29,10 @@ class _AccountListViewState extends AccountListViewModel {
               // leading: const Icon(Icons.arrow_back),
               trailing: const Icon(Icons.chevron_right),
               onTap: () {
+                NavigationService.instance.navigateToPage(
+                  path: NavigationConstants.organizationView,
+                  data: data?.account
+                );
                 // TODO: redirect to account page
               },
             )

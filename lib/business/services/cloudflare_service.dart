@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
+import '../models/account_member.dart';
 import '../models/membership.dart';
 import '../models/zone.dart';
 
@@ -43,6 +44,18 @@ class CloudflareService {
       if (jsonBody is Map<String, dynamic>) {
         List result = jsonBody['result'];
         return result.map((json) => Zone.fromJson(json)).toList();
+      }
+    }
+    return null;
+  }
+
+  Future<List<AccountMember>?> fetchAccountMembers(String organizationId) async {
+    final response = await _dio.get('/accounts/$organizationId/members');
+    if (response.statusCode == HttpStatus.ok) {
+      final jsonBody = response.data;
+      if (jsonBody is Map<String, dynamic>) {
+        List result = jsonBody['result'];
+        return result.map((json) => AccountMember.fromJson(json)).toList();
       }
     }
     return null;
