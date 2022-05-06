@@ -38,6 +38,7 @@ class _LoginViewState extends State<LoginView> {
             children: [
               TextFormField(
                 controller: _textController,
+                obscureText: true,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text('Cloudflare Api Token'),
