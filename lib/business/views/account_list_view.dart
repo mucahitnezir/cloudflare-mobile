@@ -30,7 +30,7 @@ class _AccountListViewState extends AccountListViewModel {
               trailing: const Icon(Icons.chevron_right),
               onTap: () {
                 NavigationService.instance.navigateToPage(
-                  path: NavigationConstants.organizationView,
+                  path: NavigationConstants.organizationRoute,
                   data: data?.account
                 );
                 // TODO: redirect to account page

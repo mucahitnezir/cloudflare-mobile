@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       CloudflareService.instance.setToken(apiToken);
     }
 
-    var initialRoute = apiToken.isNotEmpty ? NavigationConstants.mainView : NavigationConstants.loginView;
+    var initialRoute = apiToken.isNotEmpty ? NavigationConstants.mainRoute : NavigationConstants.loginRoute;
 
     return MaterialApp(
       title: 'Cloudflare Mobile',
@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
       navigatorKey: NavigationService.instance.navigatorKey,
       initialRoute: initialRoute,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
-      // home: homeWidget,
     );
   }
 }

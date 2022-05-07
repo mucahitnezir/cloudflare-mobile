@@ -58,7 +58,7 @@ class _LoginViewState extends State<LoginView> {
                     LocaleManager.instance.setString(LocaleKeys.cfApiToken, token);
                     CloudflareService.instance.setToken(token);
 
-                    NavigationService.instance.navigateToPageClear(path: NavigationConstants.mainView);
+                    NavigationService.instance.navigateToPageClear(path: NavigationConstants.mainRoute);
                   }
                 },
                 child: const Text('Authenticate'),

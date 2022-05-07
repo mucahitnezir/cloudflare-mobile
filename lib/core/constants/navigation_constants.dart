@@ -1,5 +1,7 @@
+// Don't use slash(/) for route names
+
 class NavigationConstants {
-  static const loginView = '/login';
-  static const mainView = '/main';
-  static const organizationView = '/organization';
+  static const mainRoute = 'main';
+  static const loginRoute = 'login';
+  static const organizationRoute = 'organization';
 }

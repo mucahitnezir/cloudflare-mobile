@@ -17,11 +17,11 @@ class NavigationRoute {
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case NavigationConstants.loginView:
+      case NavigationConstants.loginRoute:
         return normalNavigation(const LoginView());
-      case NavigationConstants.mainView:
+      case NavigationConstants.mainRoute:
         return normalNavigation(const MainView());
-      case NavigationConstants.organizationView:
+      case NavigationConstants.organizationRoute:
         var account = settings.arguments as Account;
         return normalNavigation(AccountMainView(account: account));
       default:
