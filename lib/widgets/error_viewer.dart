@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:cloudflare_mobile/business/models/api_response.dart';
 
@@ -13,8 +14,22 @@ class ErrorViewer extends StatelessWidget {
         ? errors[0].message
         : 'An error occurred';
 
-    return Center(
-      child: Text(errorMessage),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 200,
+            child: Lottie.network('https://assets6.lottiefiles.com/private_files/lf30_jq4i7W.json'),
+          ),
+          Text(
+            errorMessage,
+            style: const TextStyle(fontSize: 18.0),
+          ),
+        ],
+      ),
     );
   }
 }
