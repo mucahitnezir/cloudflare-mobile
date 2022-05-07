@@ -37,7 +37,7 @@ class ApiResponse<EntityType extends BaseEntity, ResponseType> {
 }
 
 class Error {
-  String code;
+  int code;
   String message;
 
   Error({required this.code, required this.message});
