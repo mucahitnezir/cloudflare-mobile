@@ -15,10 +15,10 @@ class _AccountMembersViewState extends AccountMembersViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: accountMembers == null ? const Text('Loading') : ListView.builder(
-        itemCount: accountMembers?.length,
+      body: apiResponse == null ? const Text('Loading') : ListView.builder(
+        itemCount: apiResponse?.result?.length,
         itemBuilder: (BuildContext context, int index) {
-          var data = accountMembers?[index];
+          var data = apiResponse?.result?[index];
 
           return Card(
               child: ListTile(

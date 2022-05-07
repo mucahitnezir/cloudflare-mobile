@@ -1,4 +1,6 @@
-class User {
+import 'base_entity.dart';
+
+class User extends BaseEntity {
   String? id;
   String? firstName;
   String? lastName;
@@ -20,6 +22,7 @@ class User {
     twoFactorAuthenticationEnabled = json['two_factor_authentication_enabled'];
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;

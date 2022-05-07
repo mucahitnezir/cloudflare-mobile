@@ -18,10 +18,10 @@ class _AccountListViewState extends AccountListViewModel {
       appBar: AppBar(
         title: const Text('Accounts'),
       ),
-      body: memberships == null ? const Text('Loading') : ListView.builder(
-        itemCount: memberships?.length,
+      body: apiResponse == null ? const Text('Loading') : ListView.builder(
+        itemCount: apiResponse?.result?.length,
         itemBuilder: (BuildContext context, int index) {
-          var data = memberships?[index];
+          var data = apiResponse?.result?[index];
 
           return Card(
             child: ListTile(

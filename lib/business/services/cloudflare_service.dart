@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 
+import '../models/api_response.dart';
 import '../models/account_member.dart';
 import '../models/membership.dart';
 import '../models/zone.dart';
@@ -25,39 +24,33 @@ class CloudflareService {
     );
   }
 
-  Future<List<Membership>?> fetchMemberships() async {
-    final response = await _dio.get('/memberships');
-    if (response.statusCode == HttpStatus.ok) {
+  Future<ApiResponse<Membership, List<Membership>>> fetchMemberships() async {
+    try {
+      final response = await _dio.get('/memberships');
       final jsonBody = response.data;
-      if (jsonBody is Map<String, dynamic>) {
-        List result = jsonBody['result'];
-        return result.map((json) => Membership.fromJson(json)).toList();
-      }
+      return ApiResponse<Membership, List<Membership>>.fromJson(jsonBody, (result) => Membership.fromJson(result));
+    } on DioError catch (err) {
+      return ApiResponse<Membership, List<Membership>>.fromError(err.response?.data);
     }
-    return null;
   }
 
-  Future<List<Zone>?> fetchZones() async {
-    final response = await _dio.get('/zones');
-    if (response.statusCode == HttpStatus.ok) {
+  Future<ApiResponse<Zone, List<Zone>>> fetchZones() async {
+    try {
+      final response = await _dio.get('/zones');
       final jsonBody = response.data;
-      if (jsonBody is Map<String, dynamic>) {
-        List result = jsonBody['result'];
-        return result.map((json) => Zone.fromJson(json)).toList();
-      }
+      return ApiResponse<Zone, List<Zone>>.fromJson(jsonBody, (result) => Zone.fromJson(result));
+    } on DioError catch (err) {
+      return ApiResponse<Zone, List<Zone>>.fromError(err.response?.data);
     }
-    return null;
   }
 
-  Future<List<AccountMember>?> fetchAccountMembers(String organizationId) async {
-    final response = await _dio.get('/accounts/$organizationId/members');
-    if (response.statusCode == HttpStatus.ok) {
+  Future<ApiResponse<AccountMember, List<AccountMember>>> fetchAccountMembers(String organizationId) async {
+    try {
+      final response = await _dio.get('/accounts/$organizationId/members');
       final jsonBody = response.data;
-      if (jsonBody is Map<String, dynamic>) {
-        List result = jsonBody['result'];
-        return result.map((json) => AccountMember.fromJson(json)).toList();
-      }
+      return ApiResponse<AccountMember, List<AccountMember>>.fromJson(jsonBody, (result) => AccountMember.fromJson(result));
+    } on DioError catch (err) {
+      return ApiResponse<AccountMember, List<AccountMember>>.fromError(err.response?.data);
     }
-    return null;
   }
 }

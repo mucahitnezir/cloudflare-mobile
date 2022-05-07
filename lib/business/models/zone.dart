@@ -1,4 +1,6 @@
-class Zone {
+import 'base_entity.dart';
+
+class Zone extends BaseEntity {
   String? id;
   String? name;
   String? status;
@@ -57,6 +59,7 @@ class Zone {
     plan = json['plan'] != null ? ZonePlan.fromJson(json['plan']) : null;
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;

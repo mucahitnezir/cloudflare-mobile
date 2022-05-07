@@ -1,6 +1,7 @@
+import 'base_entity.dart';
 import 'permission.dart';
 
-class Role {
+class Role extends BaseEntity {
   String? id;
   String? name;
   String? description;
@@ -13,10 +14,11 @@ class Role {
     name = json['name'];
     description = json['description'];
     permissions = json['permissions'] != null
-        ? new Permissions.fromJson(json['permissions'])
+        ? Permissions.fromJson(json['permissions'])
         : null;
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;

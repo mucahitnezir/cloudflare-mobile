@@ -1,7 +1,8 @@
+import 'base_entity.dart';
 import 'role.dart';
 import 'user.dart';
 
-class AccountMember {
+class AccountMember extends BaseEntity {
   String? id;
   User? user;
   String? status;
@@ -21,6 +22,7 @@ class AccountMember {
     }
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;

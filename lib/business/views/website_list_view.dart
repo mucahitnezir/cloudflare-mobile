@@ -16,10 +16,10 @@ class _WebsiteListViewState extends WebsiteListViewModel {
       appBar: AppBar(
         title: const Text('Websites'),
       ),
-      body: zones == null ? const Text('Loading') : ListView.builder(
-        itemCount: zones?.length,
+      body: apiResponse == null ? const Text('Loading') : ListView.builder(
+        itemCount: apiResponse?.result?.length,
         itemBuilder: (BuildContext context, int index) {
-          var zone = zones?[index];
+          var zone = apiResponse?.result?[index];
 
           return Card(
             child: ListTile(

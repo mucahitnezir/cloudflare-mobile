@@ -1,3 +1,4 @@
+import 'package:cloudflare_mobile/business/models/api_response.dart';
 import 'package:flutter/material.dart';
 
 import '../models/zone.dart';
@@ -5,7 +6,7 @@ import '../services/cloudflare_service.dart';
 import '../views/website_list_view.dart';
 
 abstract class WebsiteListViewModel extends State<WebsiteListView> {
-  List<Zone>? zones;
+  ApiResponse<Zone, List<Zone>>? apiResponse;
 
   @override
   void initState() {
@@ -18,7 +19,7 @@ abstract class WebsiteListViewModel extends State<WebsiteListView> {
     var zoneList = await CloudflareService.instance.fetchZones();
 
     setState(() {
-      zones = zoneList;
+      apiResponse = zoneList;
     });
   }
 }
