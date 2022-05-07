@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloudflare_mobile/core/constants/navigation_constants.dart';
+import 'package:cloudflare_mobile/core/constants/enums/locale_keys.dart';
+import 'package:cloudflare_mobile/core/init/cache/locale_manager.dart';
 import 'package:cloudflare_mobile/core/init/navigation/navigation_service.dart';
+
 import 'package:cloudflare_mobile/widgets/error_viewer.dart';
 import 'package:cloudflare_mobile/widgets/loading.dart';
 
@@ -20,6 +24,19 @@ class _AccountListViewState extends AccountListViewModel {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Accounts'),
+        centerTitle: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () {
+              LocaleManager.instance.remove(LocaleKeys.cfApiToken);
+              NavigationService.instance.navigateToPageClear(
+                path: NavigationConstants.loginRoute,
+              );
+            },
+          )
+        ],
       ),
       body: isLoading ? const Loading() : _buildBodyContent,
     );

@@ -19,6 +19,7 @@ class _WebsiteListViewState extends WebsiteListViewModel {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Websites'),
+        centerTitle: false,
       ),
       body: isLoading ? const Loading() : _buildBodyContent,
     );
