@@ -44,6 +44,16 @@ class CloudflareService {
     }
   }
 
+  Future<ApiResponse<Zone, List<Zone>>> fetchAccountZones(String accountId) async {
+    try {
+      final response = await _dio.get('/zones', queryParameters: {'account.id': accountId});
+      final jsonBody = response.data;
+      return ApiResponse<Zone, List<Zone>>.fromJson(jsonBody, (result) => Zone.fromJson(result));
+    } on DioError catch (err) {
+      return ApiResponse<Zone, List<Zone>>.fromError(err.response?.data);
+    }
+  }
+
   Future<ApiResponse<AccountMember, List<AccountMember>>> fetchAccountMembers(String accountId) async {
     try {
       final response = await _dio.get('/accounts/$accountId/members');

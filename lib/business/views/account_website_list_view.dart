@@ -1,25 +1,24 @@
-import 'package:cloudflare_mobile/widgets/website_list_item.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cloudflare_mobile/business/view_models/account_website_list_view_model.dart';
 import 'package:cloudflare_mobile/widgets/error_viewer.dart';
 import 'package:cloudflare_mobile/widgets/loading.dart';
+import 'package:cloudflare_mobile/widgets/website_list_item.dart';
 
-import '../view_models/website_list_view_model.dart';
+class AccountWebsiteListView extends StatefulWidget {
+  final String accountId;
 
-class WebsiteListView extends StatefulWidget {
-  const WebsiteListView({Key? key}) : super(key: key);
+  const AccountWebsiteListView({Key? key, required this.accountId})
+      : super(key: key);
 
   @override
-  State<WebsiteListView> createState() => _WebsiteListViewState();
+  State<AccountWebsiteListView> createState() => _AccountWebsiteListViewState();
 }
 
-class _WebsiteListViewState extends WebsiteListViewModel {
+class _AccountWebsiteListViewState extends AccountWebsiteListViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Websites'),
-      ),
       body: isLoading ? const Loading() : _buildBodyContent,
     );
   }
