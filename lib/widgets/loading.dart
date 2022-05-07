@@ -7,7 +7,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Lottie.network('https://assets5.lottiefiles.com/packages/lf20_x62chJ.json'),
+      child: Lottie.network('https://assets5.lottiefiles.com/packages/lf20_x62chJ.json', width: 250, height: 250),
     );
   }
 }
