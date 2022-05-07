@@ -2,7 +2,7 @@ import 'base_entity.dart';
 
 class ApiResponse<EntityType extends BaseEntity, ResponseType> {
   bool success;
-  List<Error> errors;
+  List<ApiError> errors;
   ResponseType? result;
   ResultInfo? resultInfo;
 
@@ -22,7 +22,7 @@ class ApiResponse<EntityType extends BaseEntity, ResponseType> {
 
     return ApiResponse<EntityType, ResponseType>(
       success: json['success'],
-      errors: List.from(json['errors']).map((e) => Error.fromJson(e)).toList(),
+      errors: List.from(json['errors']).map((e) => ApiError.fromJson(e)).toList(),
       result: result,
       resultInfo: json['result_info'] != null ? ResultInfo.fromJson(json['result_info']) : null
     );
@@ -31,19 +31,19 @@ class ApiResponse<EntityType extends BaseEntity, ResponseType> {
   factory ApiResponse.fromError(Map<String, dynamic> json) {
     return ApiResponse<EntityType, ResponseType>(
       success: json['success'],
-      errors: List.from(json['errors']).map((e) => Error.fromJson(e)).toList(),
+      errors: List.from(json['errors']).map((e) => ApiError.fromJson(e)).toList(),
     );
   }
 }
 
-class Error {
+class ApiError {
   int code;
   String message;
 
-  Error({required this.code, required this.message});
+  ApiError({required this.code, required this.message});
 
-  factory Error.fromJson(Map<String, dynamic> json) {
-    return Error(code: json['code'], message: json['message']);
+  factory ApiError.fromJson(Map<String, dynamic> json) {
+    return ApiError(code: json['code'], message: json['message']);
   }
 }
 

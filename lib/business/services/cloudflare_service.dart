@@ -44,9 +44,9 @@ class CloudflareService {
     }
   }
 
-  Future<ApiResponse<AccountMember, List<AccountMember>>> fetchAccountMembers(String organizationId) async {
+  Future<ApiResponse<AccountMember, List<AccountMember>>> fetchAccountMembers(String accountId) async {
     try {
-      final response = await _dio.get('/accounts/$organizationId/members');
+      final response = await _dio.get('/accounts/$accountId/members');
       final jsonBody = response.data;
       return ApiResponse<AccountMember, List<AccountMember>>.fromJson(jsonBody, (result) => AccountMember.fromJson(result));
     } on DioError catch (err) {

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloudflare_mobile/widgets/error_viewer.dart';
+import 'package:cloudflare_mobile/widgets/loading.dart';
+
 import '../view_models/website_list_view_model.dart';
 
 class WebsiteListView extends StatefulWidget {
@@ -16,12 +19,27 @@ class _WebsiteListViewState extends WebsiteListViewModel {
       appBar: AppBar(
         title: const Text('Websites'),
       ),
-      body: apiResponse == null ? const Text('Loading') : ListView.builder(
-        itemCount: apiResponse?.result?.length,
-        itemBuilder: (BuildContext context, int index) {
-          var zone = apiResponse?.result?[index];
+      body: isLoading ? const Loading() : _buildBodyContent,
+    );
+  }
 
-          return Card(
+  Widget get _buildBodyContent {
+    if (apiResponse == null) {
+      return Container();
+    }
+
+    return apiResponse!.success
+        ? _buildContent
+        : ErrorViewer(errors: apiResponse!.errors);
+  }
+
+  Widget get _buildContent {
+    return ListView.builder(
+      itemCount: apiResponse?.result?.length,
+      itemBuilder: (BuildContext context, int index) {
+        var zone = apiResponse?.result?[index];
+
+        return Card(
             child: ListTile(
               title: Text(zone?.name ?? ''),
               subtitle: Text(zone?.account?.name ?? ''),
@@ -31,9 +49,8 @@ class _WebsiteListViewState extends WebsiteListViewModel {
                 // TODO: redirect to account page
               },
             )
-          );
-        },
-      ),
+        );
+      },
     );
   }
 }

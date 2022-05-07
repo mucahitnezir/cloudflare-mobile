@@ -1,11 +1,12 @@
-import 'package:cloudflare_mobile/business/models/account_member.dart';
-import 'package:cloudflare_mobile/business/models/api_response.dart';
-import 'package:cloudflare_mobile/business/services/cloudflare_service.dart';
-import 'package:flutter/material.dart';
-
+import '../models/account_member.dart';
+import '../models/api_response.dart';
+import '../services/cloudflare_service.dart';
 import '../views/account_members_view.dart';
 
-abstract class AccountMembersViewModel extends State<AccountMembersView> {
+import '../../core/generics/loading_state.dart';
+
+
+abstract class AccountMembersViewModel extends LoadingState<AccountMembersView> {
   ApiResponse<AccountMember, List<AccountMember>>? apiResponse;
 
   @override
@@ -16,10 +17,14 @@ abstract class AccountMembersViewModel extends State<AccountMembersView> {
   }
 
   void _fetch() async {
+    changeLoading();
+
     var members = await CloudflareService.instance.fetchAccountMembers(widget.accountId);
 
     setState(() {
       apiResponse = members;
     });
+
+    changeLoading();
   }
 }

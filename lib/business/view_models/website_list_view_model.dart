@@ -1,11 +1,11 @@
-import 'package:cloudflare_mobile/business/models/api_response.dart';
-import 'package:flutter/material.dart';
+import 'package:cloudflare_mobile/core/generics/loading_state.dart';
 
+import '../models/api_response.dart';
 import '../models/zone.dart';
 import '../services/cloudflare_service.dart';
 import '../views/website_list_view.dart';
 
-abstract class WebsiteListViewModel extends State<WebsiteListView> {
+abstract class WebsiteListViewModel extends LoadingState<WebsiteListView> {
   ApiResponse<Zone, List<Zone>>? apiResponse;
 
   @override
@@ -16,10 +16,14 @@ abstract class WebsiteListViewModel extends State<WebsiteListView> {
   }
 
   Future<void> _fetch() async {
+    changeLoading();
+
     var zoneList = await CloudflareService.instance.fetchZones();
 
     setState(() {
       apiResponse = zoneList;
     });
+
+    changeLoading();
   }
 }
