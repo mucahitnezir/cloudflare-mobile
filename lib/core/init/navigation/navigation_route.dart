@@ -22,7 +22,7 @@ class NavigationRoute {
         return normalNavigation(const LoginView());
       case NavigationConstants.mainRoute:
         return normalNavigation(const MainView());
-      case NavigationConstants.organizationRoute:
+      case NavigationConstants.accountRoute:
         var account = settings.arguments as Account;
         return normalNavigation(AccountMainView(account: account));
       default:

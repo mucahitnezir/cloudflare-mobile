@@ -3,5 +3,5 @@
 class NavigationConstants {
   static const mainRoute = 'main';
   static const loginRoute = 'login';
-  static const organizationRoute = 'organization';
+  static const accountRoute = 'account';
 }
