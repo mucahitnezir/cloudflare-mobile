@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     var initialRoute = apiToken.isNotEmpty ? NavigationConstants.mainRoute : NavigationConstants.loginRoute;
 
     return MaterialApp(
-      title: 'Cloudflare Mobile',
+      title: 'Cloudflare',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
