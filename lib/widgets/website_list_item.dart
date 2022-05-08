@@ -12,7 +12,7 @@ class WebsiteListItem extends StatelessWidget {
     return Card(
         child: ListTile(
           title: Text(zone.name ?? ''),
-          subtitle: Text(zone.account?.name ?? ''),
+          subtitle: Text('${zone.account?.name} - ${zone.plan?.name}'),
           // leading: const Icon(Icons.arrow_back),
           trailing: const Icon(Icons.chevron_right),
           onTap: () {
