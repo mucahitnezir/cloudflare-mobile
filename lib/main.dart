@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       title: 'Cloudflare',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
       // navigation
       navigatorKey: NavigationService.instance.navigatorKey,
