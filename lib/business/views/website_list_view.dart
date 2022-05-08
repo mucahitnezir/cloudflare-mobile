@@ -1,6 +1,8 @@
-import 'package:cloudflare_mobile/widgets/website_list_item.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cloudflare_mobile/business/dto/pagination_dto.dart';
+import 'package:cloudflare_mobile/widgets/pagination.dart';
+import 'package:cloudflare_mobile/widgets/website_list_item.dart';
 import 'package:cloudflare_mobile/widgets/error_viewer.dart';
 import 'package:cloudflare_mobile/widgets/loading.dart';
 
@@ -36,12 +38,34 @@ class _WebsiteListViewState extends WebsiteListViewModel {
   }
 
   Widget get _buildContent {
-    return ListView.builder(
-      itemCount: apiResponse?.result?.length,
-      itemBuilder: (BuildContext context, int index) {
-        var zone = apiResponse?.result?[index];
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: apiResponse?.result?.length,
+            itemBuilder: (BuildContext context, int index) {
+              var zone = apiResponse?.result?[index];
 
-        return WebsiteListItem(zone: zone!);
+              return WebsiteListItem(zone: zone!);
+            },
+          ),
+        ),
+        _buildPagination
+      ],
+    );
+  }
+
+  Widget get _buildPagination {
+    return Pagination(
+      label: 'websites',
+      resultInfo: apiResponse!.resultInfo!,
+      prevCallback: (PaginationDto prevPaginationDto) {
+        paginationDto = prevPaginationDto;
+        fetch();
+      },
+      nextCallback: (PaginationDto nextPaginationDto) {
+        paginationDto = nextPaginationDto;
+        fetch();
       },
     );
   }

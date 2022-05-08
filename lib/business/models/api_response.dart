@@ -1,5 +1,7 @@
 import 'base_entity.dart';
 
+import '../dto/pagination_dto.dart';
+
 class ApiResponse<EntityType extends BaseEntity, ResponseType> {
   bool success;
   List<ApiError> errors;
@@ -61,6 +63,46 @@ class ResultInfo {
       perPage: json['per_page'],
       count: json['count'],
       totalCount: json['total_count'],
+    );
+  }
+
+  String paginationText(String label) {
+    var startItem = (page - 1) * perPage + 1;
+    var lastItem = startItem + count - 1;
+    return '$startItem to $lastItem of $totalCount $label';
+  }
+
+  int get maxPage {
+    return (totalCount / perPage).ceil();
+  }
+
+  bool get hasPreviousPage {
+    return page > 1;
+  }
+
+  PaginationDto? get previousPaginationDto {
+    if (!hasPreviousPage) {
+      return null;
+    }
+
+    return PaginationDto(
+      page: page - 1,
+      perPage: perPage
+    );
+  }
+
+  bool get hasNextPage {
+    return maxPage > 1 && page < maxPage;
+  }
+
+  PaginationDto? get nextPaginationDto {
+    if (!hasNextPage) {
+      return null;
+    }
+
+    return PaginationDto(
+        page: page + 1,
+        perPage: perPage
     );
   }
 }

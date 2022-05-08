@@ -1,3 +1,4 @@
+import 'package:cloudflare_mobile/business/dto/pagination_dto.dart';
 import 'package:dio/dio.dart';
 
 import '../models/api_response.dart';
@@ -34,9 +35,12 @@ class CloudflareService {
     }
   }
 
-  Future<ApiResponse<Zone, List<Zone>>> fetchZones() async {
+  Future<ApiResponse<Zone, List<Zone>>> fetchZones(PaginationDto paginationDto) async {
     try {
-      final response = await _dio.get('/zones');
+      // Prepare query parameters
+      Map<String, dynamic> queryParams = paginationDto.toJson();
+
+      final response = await _dio.get('/zones?page=1', queryParameters: queryParams);
       final jsonBody = response.data;
       return ApiResponse<Zone, List<Zone>>.fromJson(jsonBody, (result) => Zone.fromJson(result));
     } on DioError catch (err) {
@@ -44,9 +48,13 @@ class CloudflareService {
     }
   }
 
-  Future<ApiResponse<Zone, List<Zone>>> fetchAccountZones(String accountId) async {
+  Future<ApiResponse<Zone, List<Zone>>> fetchAccountZones(String accountId, PaginationDto paginationDto) async {
     try {
-      final response = await _dio.get('/zones', queryParameters: {'account.id': accountId});
+      // Prepare query parameters
+      Map<String, dynamic> queryParams = {'account.id': accountId};
+      queryParams.addAll(paginationDto.toJson());
+
+      final response = await _dio.get('/zones', queryParameters: queryParams);
       final jsonBody = response.data;
       return ApiResponse<Zone, List<Zone>>.fromJson(jsonBody, (result) => Zone.fromJson(result));
     } on DioError catch (err) {
@@ -54,9 +62,12 @@ class CloudflareService {
     }
   }
 
-  Future<ApiResponse<AccountMember, List<AccountMember>>> fetchAccountMembers(String accountId) async {
+  Future<ApiResponse<AccountMember, List<AccountMember>>> fetchAccountMembers(String accountId, PaginationDto paginationDto) async {
     try {
-      final response = await _dio.get('/accounts/$accountId/members');
+      // Prepare query parameters
+      Map<String, dynamic> queryParams = paginationDto.toJson();
+
+      final response = await _dio.get('/accounts/$accountId/members', queryParameters: queryParams);
       final jsonBody = response.data;
       return ApiResponse<AccountMember, List<AccountMember>>.fromJson(jsonBody, (result) => AccountMember.fromJson(result));
     } on DioError catch (err) {

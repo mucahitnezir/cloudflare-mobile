@@ -1,3 +1,5 @@
+import 'package:cloudflare_mobile/business/dto/pagination_dto.dart';
+import 'package:cloudflare_mobile/widgets/pagination.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloudflare_mobile/widgets/error_viewer.dart';
@@ -34,20 +36,42 @@ class _AccountMembersViewState extends AccountMembersViewModel {
   }
 
   Widget get _buildContent {
-    return ListView.builder(
-      itemCount: apiResponse?.result?.length,
-      itemBuilder: (BuildContext context, int index) {
-        var data = apiResponse?.result?[index];
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: apiResponse?.result?.length,
+            itemBuilder: (BuildContext context, int index) {
+              var data = apiResponse?.result?[index];
 
-        return Card(
-            child: ListTile(
-          title: Text(data?.user?.email ?? ''),
-          subtitle: Text('${data?.roles?[0].name} · ${data?.status}'),
-          // trailing: const Icon(Icons.chevron_right),
-          onTap: () {
-            // TODO: show other details
-          },
-        ));
+              return Card(
+                  child: ListTile(
+                title: Text(data?.user?.email ?? ''),
+                subtitle: Text('${data?.roles?[0].name} · ${data?.status}'),
+                // trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  // TODO: show other details
+                },
+              ));
+            },
+          ),
+        ),
+        _buildPagination,
+      ],
+    );
+  }
+
+  Widget get _buildPagination {
+    return Pagination(
+      label: 'websites',
+      resultInfo: apiResponse!.resultInfo!,
+      prevCallback: (PaginationDto prevPaginationDto) {
+        paginationDto = prevPaginationDto;
+        fetch();
+      },
+      nextCallback: (PaginationDto nextPaginationDto) {
+        paginationDto = nextPaginationDto;
+        fetch();
       },
     );
   }
