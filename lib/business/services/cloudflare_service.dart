@@ -1,6 +1,8 @@
 import 'package:cloudflare_mobile/business/dto/pagination_dto.dart';
+import 'package:cloudflare_mobile/business/models/zone_settings.dart';
 import 'package:dio/dio.dart';
 
+import '../dto/zone_settings_identifier_dto.dart';
 import '../models/api_response.dart';
 import '../models/account_member.dart';
 import '../models/membership.dart';
@@ -59,6 +61,17 @@ class CloudflareService {
       return ApiResponse<Zone, List<Zone>>.fromJson(jsonBody, (result) => Zone.fromJson(result));
     } on DioError catch (err) {
       return ApiResponse<Zone, List<Zone>>.fromError(err.response?.data);
+    }
+  }
+
+  Future<ApiResponse<ZoneSettings, ZoneSettings>> fetchZoneSettings(ZoneSettingsIdentifierDto identifierDto) async {
+    try {
+      // Prepare query parameters
+      final response = await _dio.get('/zones/${identifierDto.zoneId}/settings/${identifierDto.identifier}');
+      final jsonBody = response.data;
+      return ApiResponse<ZoneSettings, ZoneSettings>.fromJson(jsonBody, (result) => ZoneSettings.fromJson(result));
+    } on DioError catch (err) {
+      return ApiResponse<ZoneSettings, ZoneSettings>.fromError(err.response?.data);
     }
   }
 
