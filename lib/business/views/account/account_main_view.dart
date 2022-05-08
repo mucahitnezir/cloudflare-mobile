@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:cloudflare_mobile/business/views/account_members_view.dart';
-import 'package:cloudflare_mobile/business/views/account_website_list_view.dart';
+import 'account_members_view.dart';
+import 'account_website_list_view.dart';
 
-import '../models/account.dart';
+import '../../models/account.dart';
 
 class AccountMainView extends StatefulWidget {
   final Account account;

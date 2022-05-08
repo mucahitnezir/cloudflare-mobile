@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './account_list_view.dart';
-import './website_list_view.dart';
+import 'account_list_view.dart';
+import 'website_list_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);

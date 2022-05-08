@@ -6,7 +6,7 @@ import 'package:cloudflare_mobile/widgets/website_list_item.dart';
 import 'package:cloudflare_mobile/widgets/error_viewer.dart';
 import 'package:cloudflare_mobile/widgets/loading.dart';
 
-import '../view_models/website_list_view_model.dart';
+import '../../view_models/website_list_view_model.dart';
 
 class WebsiteListView extends StatefulWidget {
   const WebsiteListView({Key? key}) : super(key: key);

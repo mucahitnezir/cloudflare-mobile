@@ -4,7 +4,7 @@ import 'package:cloudflare_mobile/core/generics/loading_state.dart';
 import '../models/api_response.dart';
 import '../models/zone.dart';
 import '../services/cloudflare_service.dart';
-import '../views/account_website_list_view.dart';
+import '../views/account/account_website_list_view.dart';
 
 abstract class AccountWebsiteListViewModel extends LoadingState<AccountWebsiteListView> {
   PaginationDto paginationDto = PaginationDto();

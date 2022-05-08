@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cloudflare_mobile/widgets/error_viewer.dart';
 import 'package:cloudflare_mobile/widgets/loading.dart';
 
-import '../view_models/account_members_view_model.dart';
+import '../../view_models/account_members_view_model.dart';
 
 class AccountMembersView extends StatefulWidget {
   final String accountId;

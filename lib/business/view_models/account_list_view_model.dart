@@ -3,7 +3,7 @@ import 'package:cloudflare_mobile/core/generics/loading_state.dart';
 import '../models/api_response.dart';
 import '../models/membership.dart';
 import '../services/cloudflare_service.dart';
-import '../views/account_list_view.dart';
+import '../views/main/account_list_view.dart';
 
 abstract class AccountListViewModel extends LoadingState<AccountListView> {
   ApiResponse<Membership, List<Membership>>? apiResponse;

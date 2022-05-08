@@ -1,12 +1,13 @@
-import 'package:cloudflare_mobile/business/models/account.dart';
-import 'package:cloudflare_mobile/business/views/account_main_view.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cloudflare_mobile/business/views/main_view.dart';
+import 'package:cloudflare_mobile/business/models/account.dart';
+
+import 'package:cloudflare_mobile/business/views/account/account_main_view.dart';
+import 'package:cloudflare_mobile/business/views/main/main_view.dart';
 import 'package:cloudflare_mobile/business/views/not_found_view.dart';
 import 'package:cloudflare_mobile/business/views/login_view.dart';
 
-import '../../constants/navigation_constants.dart';
+import 'package:cloudflare_mobile/core/constants/navigation_constants.dart';
 
 class NavigationRoute {
   static final NavigationRoute _instance = NavigationRoute._init();
