@@ -22,7 +22,7 @@ class ErrorViewer extends StatelessWidget {
         children: [
           SizedBox(
             width: 200,
-            child: Lottie.network('https://assets6.lottiefiles.com/private_files/lf30_jq4i7W.json'),
+            child: Lottie.asset('assets/lottie/lottie_error.json'),
           ),
           Text(
             errorMessage,
