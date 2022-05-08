@@ -4,4 +4,5 @@ class NavigationConstants {
   static const mainRoute = 'main';
   static const loginRoute = 'login';
   static const accountRoute = 'account';
+  static const websiteRoute = 'website';
 }

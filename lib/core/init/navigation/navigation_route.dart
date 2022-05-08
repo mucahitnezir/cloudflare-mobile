@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloudflare_mobile/business/models/zone.dart';
 import 'package:cloudflare_mobile/business/models/account.dart';
 
 import 'package:cloudflare_mobile/business/views/account/account_main_view.dart';
 import 'package:cloudflare_mobile/business/views/main/main_view.dart';
 import 'package:cloudflare_mobile/business/views/not_found_view.dart';
 import 'package:cloudflare_mobile/business/views/login_view.dart';
+import 'package:cloudflare_mobile/business/views/website/website_main_view.dart';
 
 import 'package:cloudflare_mobile/core/constants/navigation_constants.dart';
 
@@ -25,6 +27,9 @@ class NavigationRoute {
       case NavigationConstants.accountRoute:
         var account = settings.arguments as Account;
         return normalNavigation(AccountMainView(account: account));
+      case NavigationConstants.websiteRoute:
+        var website = settings.arguments as Zone;
+        return normalNavigation(WebsiteMainView(zone: website));
       default:
         return normalNavigation(const NotFoundView());
     }
