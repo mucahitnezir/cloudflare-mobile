@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudflare_mobile/business/models/zone.dart';
 
+import 'website_overview_view.dart';
+
 class WebsiteMainView extends StatefulWidget {
   final Zone zone;
 
@@ -13,10 +15,11 @@ class WebsiteMainView extends StatefulWidget {
 
 class _WebsiteMainViewState extends State<WebsiteMainView> with TickerProviderStateMixin {
   late final TabController _tabController;
+
   late final tabs = [
     {
       'title': 'Overview',
-      'widget': const Center(child: Text('Overview Page')),
+      'widget': WebsiteOverviewView(zone: widget.zone),
     },
     {
       'title': 'DNS',
