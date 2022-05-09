@@ -63,7 +63,7 @@ class _AccountMembersViewState extends AccountMembersViewModel {
 
   Widget get _buildPagination {
     return Pagination(
-      label: 'websites',
+      label: 'members',
       resultInfo: apiResponse!.resultInfo!,
       prevCallback: (PaginationDto prevPaginationDto) {
         paginationDto = prevPaginationDto;
