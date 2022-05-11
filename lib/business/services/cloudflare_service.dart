@@ -1,12 +1,14 @@
-import 'package:cloudflare_mobile/business/dto/pagination_dto.dart';
-import 'package:cloudflare_mobile/business/models/zone_settings.dart';
 import 'package:dio/dio.dart';
 
+import '../dto/pagination_dto.dart';
 import '../dto/zone_settings_identifier_dto.dart';
+
 import '../models/api_response.dart';
 import '../models/account_member.dart';
 import '../models/membership.dart';
 import '../models/zone.dart';
+import '../models/dns_record.dart';
+import '../models/zone_settings.dart';
 
 class CloudflareService {
   CloudflareService._init() {
@@ -85,6 +87,16 @@ class CloudflareService {
       return ApiResponse<AccountMember, List<AccountMember>>.fromJson(jsonBody, (result) => AccountMember.fromJson(result));
     } on DioError catch (err) {
       return ApiResponse<AccountMember, List<AccountMember>>.fromError(err.response?.data);
+    }
+  }
+
+  Future<ApiResponse<DnsRecord, List<DnsRecord>>> fetchDnsRecords(String zoneId) async {
+    try {
+      final response = await _dio.get('/zones/$zoneId/dns_records');
+      final jsonBody = response.data;
+      return ApiResponse<DnsRecord, List<DnsRecord>>.fromJson(jsonBody, (result) => DnsRecord.fromJson(result));
+    } on DioError catch (err) {
+      return ApiResponse<DnsRecord, List<DnsRecord>>.fromError(err.response?.data);
     }
   }
 }

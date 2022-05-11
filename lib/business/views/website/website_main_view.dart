@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudflare_mobile/business/models/zone.dart';
 
+import 'website_dns_view.dart';
 import 'website_overview_view.dart';
 
 class WebsiteMainView extends StatefulWidget {
@@ -23,7 +24,7 @@ class _WebsiteMainViewState extends State<WebsiteMainView> with TickerProviderSt
     },
     {
       'title': 'DNS',
-      'widget': const Center(child: Text('DNS Page')),
+      'widget': WebsiteDnsView(zone: widget.zone),
     },
     {
       'title': 'Speed',
